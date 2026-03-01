@@ -3,6 +3,7 @@ import Hero from '@/components/Hero'
 import Marquee from '@/components/Marquee'
 import Services from '@/components/Services'
 import About from '@/components/About'
+import Philosophy from '@/components/Philosophy'
 import Differentiators from '@/components/Differentiators'
 import Process from '@/components/Process'
 import Contact from '@/components/Contact'
@@ -16,6 +17,7 @@ export default function Home() {
       <Marquee />
       <Services />
       <About />
+      <Philosophy />
       <Differentiators />
       <Process />
       <Contact />

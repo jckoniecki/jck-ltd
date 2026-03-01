@@ -8,13 +8,12 @@ const services = [
     sub: 'Copilot · Azure AI · Intune · M365',
     body: 'Deep deployment expertise across the full Microsoft AI stack — built on Kyndryl-scale delivery across Fortune 500 environments. Not presentations. Production implementations that stick.',
     wide: true,
-    delay: '0s',
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-        <rect x="4" y="4" width="14" height="14" rx="2" fill="#F59E0B" opacity="0.9"/>
-        <rect x="22" y="4" width="14" height="14" rx="2" fill="#D97706" opacity="0.6"/>
-        <rect x="4" y="22" width="14" height="14" rx="2" fill="#D97706" opacity="0.6"/>
-        <rect x="22" y="22" width="14" height="14" rx="2" fill="#92400E" opacity="0.4"/>
+      <svg viewBox="0 0 44 44" fill="none" className="w-11 h-11">
+        <rect x="3" y="3" width="17" height="17" rx="2.5" fill="#F59E0B" opacity="0.85"/>
+        <rect x="24" y="3" width="17" height="17" rx="2.5" fill="#F59E0B" opacity="0.45"/>
+        <rect x="3" y="24" width="17" height="17" rx="2.5" fill="#F59E0B" opacity="0.45"/>
+        <rect x="24" y="24" width="17" height="17" rx="2.5" fill="#F59E0B" opacity="0.2"/>
       </svg>
     ),
   },
@@ -22,18 +21,17 @@ const services = [
     number: '02',
     title: 'Digital Workplace Strategy',
     sub: 'Roadmap · Adoption · Change',
-    body: 'How AI actually changes how people work — not what vendors promise. Strategy grounded in global deployment reality from leading Kyndryl\'s Digital Workplace practice worldwide.',
+    body: 'AI strategy grounded in global deployment reality. How generative AI actually changes how people work — not what vendors promise at the booth.',
     wide: false,
-    delay: '0.8s',
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-        <circle cx="20" cy="20" r="14" stroke="#F59E0B" strokeWidth="1.5" opacity="0.4"/>
-        <circle cx="20" cy="20" r="8" stroke="#FBBF24" strokeWidth="1.5" opacity="0.7"/>
-        <circle cx="20" cy="20" r="3" fill="#F59E0B"/>
-        <line x1="20" y1="6" x2="20" y2="10" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
-        <line x1="20" y1="30" x2="20" y2="34" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
-        <line x1="6" y1="20" x2="10" y2="20" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
-        <line x1="30" y1="20" x2="34" y2="20" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+      <svg viewBox="0 0 44 44" fill="none" className="w-11 h-11">
+        <circle cx="22" cy="22" r="17" stroke="#F59E0B" strokeWidth="1.2" opacity="0.3"/>
+        <circle cx="22" cy="22" r="11" stroke="#FBBF24" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="22" cy="22" r="5" stroke="#F59E0B" strokeWidth="1.5" opacity="0.8" fill="rgba(245,158,11,0.12)"/>
+        <circle cx="22" cy="22" r="2" fill="#F59E0B"/>
+        {[[22,5],[22,39],[5,22],[39,22]].map(([x,y],i) => (
+          <circle key={i} cx={x} cy={y} r="1.8" fill="#F59E0B" opacity="0.5"/>
+        ))}
       </svg>
     ),
   },
@@ -43,11 +41,11 @@ const services = [
     sub: 'Compliance · Risk · Frameworks',
     body: 'CISO-ready governance for regulated industries. Risk analysis built from the hard-learned lessons of enterprise-scale AI rollouts — before they become your problem.',
     wide: false,
-    delay: '1.6s',
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-        <path d="M20 4L6 10v10c0 8 6 14.5 14 16 8-1.5 14-8 14-16V10L20 4z" stroke="#F59E0B" strokeWidth="1.5" fill="rgba(245,158,11,0.08)" opacity="0.8"/>
-        <path d="M14 20l4 4 8-8" stroke="#FBBF24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg viewBox="0 0 44 44" fill="none" className="w-11 h-11">
+        <path d="M22 4L5 11v12c0 10 7.5 18.5 17 20 9.5-1.5 17-10 17-20V11L22 4z"
+          stroke="#F59E0B" strokeWidth="1.5" fill="rgba(245,158,11,0.07)" opacity="0.8"/>
+        <path d="M15 22l5 5 9-9" stroke="#FBBF24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
   },
@@ -55,14 +53,13 @@ const services = [
     number: '04',
     title: 'Founder Advisory',
     sub: 'Product AI · Enterprise GTM · Architecture',
-    body: 'For startups integrating AI into product and selling into enterprise. I\'ve shipped production AI in healthcare, consumer, and enterprise. I know what both sides of that table look like.',
+    body: "For startups integrating AI into product and selling into enterprise. I've shipped production AI in healthcare, consumer, and enterprise. I know what both sides of that table look like.",
     wide: true,
-    delay: '2.4s',
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-        <path d="M8 32l8-20 8 14 5-8 5 14" stroke="#F59E0B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/>
-        <circle cx="32" cy="10" r="4" fill="#F59E0B" opacity="0.3" stroke="#FBBF24" strokeWidth="1"/>
-        <circle cx="32" cy="10" r="1.5" fill="#FBBF24"/>
+      <svg viewBox="0 0 44 44" fill="none" className="w-11 h-11">
+        <path d="M6 34l10-22 10 16 6-10 6 16" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/>
+        <circle cx="36" cy="12" r="5" fill="rgba(245,158,11,0.15)" stroke="#FBBF24" strokeWidth="1.2"/>
+        <circle cx="36" cy="12" r="2" fill="#F59E0B"/>
       </svg>
     ),
   },
@@ -73,13 +70,12 @@ export default function Services() {
     <section id="services" className="py-28 md:py-36">
       <div className="max-w-6xl mx-auto px-6">
 
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6 }}
-          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
+          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-5"
         >
           <div>
             <span className="section-label">Services</span>
@@ -88,7 +84,7 @@ export default function Services() {
               <span className="text-amber-gradient">delivers.</span>
             </h2>
           </div>
-          <p className="max-w-xs text-sm leading-relaxed" style={{ color: '#6B5E50' }}>
+          <p className="max-w-xs text-sm leading-relaxed" style={{ color: '#5C4F42' }}>
             Advisory grounded in doing, not theorizing. Every service reflects work shipped at enterprise scale.
           </p>
         </motion.div>
@@ -101,21 +97,36 @@ export default function Services() {
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, delay: i * 0.09 }}
-              className={`card-warm beam-card p-8 cursor-default ${s.wide ? 'md:col-span-2' : 'md:col-span-1'}`}
-              style={{ '--delay': s.delay } as React.CSSProperties}
+              transition={{ duration: 0.55, delay: i * 0.08 }}
+              className={`group relative p-8 rounded-2xl cursor-default transition-all duration-300 ${s.wide ? 'md:col-span-2' : 'md:col-span-1'}`}
+              style={{
+                background: 'rgba(255,255,255,0.02)',
+                border: '1px solid rgba(255,255,255,0.06)',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = 'rgba(245,158,11,0.22)'
+                el.style.background = 'rgba(245,158,11,0.025)'
+                el.style.transform = 'translateY(-3px)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = 'rgba(255,255,255,0.06)'
+                el.style.background = 'rgba(255,255,255,0.02)'
+                el.style.transform = 'translateY(0)'
+              }}
             >
+              {/* Top accent line */}
+              <div className="absolute top-0 left-8 right-8 h-px rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.5), transparent)' }} />
+
               {/* Icon */}
               <div className="mb-5">{s.icon}</div>
 
-              {/* Number */}
-              <span className="text-[10px] font-mono tracking-[0.2em] mb-3 block" style={{ color: 'rgba(245,158,11,0.4)' }}>
-                {s.number}
-              </span>
-
-              <h3 className="text-lg font-bold mb-1.5" style={{ color: '#F5F1E8' }}>{s.title}</h3>
-              <p className="text-xs font-semibold mb-4 tracking-wide" style={{ color: 'rgba(245,158,11,0.6)' }}>{s.sub}</p>
-              <p className="text-sm leading-relaxed" style={{ color: '#7A6E65' }}>{s.body}</p>
+              <p className="text-[10px] font-mono tracking-[0.2em] mb-3" style={{ color: 'rgba(245,158,11,0.35)' }}>{s.number}</p>
+              <h3 className="text-lg font-bold mb-1.5" style={{ color: '#E8DDD0' }}>{s.title}</h3>
+              <p className="text-xs font-semibold mb-4 tracking-wide" style={{ color: 'rgba(245,158,11,0.55)' }}>{s.sub}</p>
+              <p className="text-sm leading-relaxed" style={{ color: '#6B5E50' }}>{s.body}</p>
             </motion.div>
           ))}
         </div>
