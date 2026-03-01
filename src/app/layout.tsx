@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 import './globals.css'
 
 const inter = Inter({
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Enterprise AI expertise meets builder credibility. Jim Koniecki — Global Director at Kyndryl — advises organizations on AI strategy, Microsoft implementation, and digital workplace transformation.',
   openGraph: {
     title: 'JCK LTD — Enterprise AI Advisory',
-    description: 'Two speeds. One advisor. Enterprise scale + builder velocity.',
+    description: 'Two speeds. One advisor.',
     type: 'website',
   },
 }
@@ -21,7 +23,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body>{children}</body>
+      <body>
+        <Navigation />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }
