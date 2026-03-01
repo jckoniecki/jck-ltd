@@ -1,22 +1,27 @@
+'use client'
 export default function Footer() {
-  const year = new Date().getFullYear()
   return (
-    <footer className="border-t border-white/[0.05] py-8">
+    <footer className="py-10" style={{ borderTop: '1px solid rgba(245,158,11,0.08)' }}>
       <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <span className="font-black tracking-tighter text-white text-lg">
-          JCK <span className="text-gradient-warm">LTD</span>
+        <span className="text-xl font-black tracking-tighter">
+          <span style={{ color: '#F5F1E8' }}>JCK </span>
+          <span className="text-amber-gradient">LTD</span>
         </span>
-        <p className="text-gray-600 text-xs">© {year} JCK LTD. All rights reserved.</p>
+        <p className="text-xs" style={{ color: '#3D3328' }}>© {new Date().getFullYear()} JCK LTD. All rights reserved.</p>
         <div className="flex items-center gap-5">
           {['Services', 'About', 'Contact'].map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} className="text-xs text-gray-600 hover:text-gray-300 transition-colors">{l}</a>
+            <a key={l} href={`#${l.toLowerCase()}`} className="text-xs transition-colors"
+              style={{ color: '#3D3328' }}
+              onMouseEnter={e => (e.target as HTMLElement).style.color = '#7A6E65'}
+              onMouseLeave={e => (e.target as HTMLElement).style.color = '#3D3328'}>
+              {l}
+            </a>
           ))}
-          <a
-            href="https://www.linkedin.com/in/jimkonieck"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-gray-600 hover:text-indigo-400 transition-colors"
-          >
+          <a href="https://www.linkedin.com/in/jimkonieck" target="_blank" rel="noopener noreferrer"
+            className="text-xs transition-colors"
+            style={{ color: '#3D3328' }}
+            onMouseEnter={e => (e.target as HTMLElement).style.color = '#F59E0B'}
+            onMouseLeave={e => (e.target as HTMLElement).style.color = '#3D3328'}>
             LinkedIn ↗
           </a>
         </div>
