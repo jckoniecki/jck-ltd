@@ -2,14 +2,18 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'JCK LTD — Enterprise AI Advisory',
-  description: 'Enterprise AI expertise and builder credibility. Jim Koniecki brings Fortune 500 scale experience and hands-on product velocity to your AI transformation.',
+  description: 'Enterprise AI expertise meets builder credibility. Jim Koniecki — Global Director at Kyndryl — advises organizations on AI strategy, Microsoft implementation, and digital workplace transformation.',
   openGraph: {
     title: 'JCK LTD — Enterprise AI Advisory',
-    description: 'Enterprise AI expertise. Builder credibility.',
+    description: 'Two speeds. One advisor. Enterprise scale + builder velocity.',
     type: 'website',
   },
 }

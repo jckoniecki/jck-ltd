@@ -3,111 +3,99 @@ import { motion } from 'framer-motion'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden noise">
+      {/* Deep base */}
+      <div className="absolute inset-0 bg-[#030712]" />
+
+      {/* Subtle grid */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-[0.025]"
         style={{
-          background: 'linear-gradient(135deg, #050A14 0%, #0A1628 30%, #050A14 60%, #080D20 100%)',
-          backgroundSize: '400% 400%',
-          animation: 'gradientShift 12s ease infinite',
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
         }}
       />
 
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl"
-        style={{
-          background: 'radial-gradient(circle, #3B82F6 0%, transparent 70%)',
-          animation: 'floatSlow 15s ease-in-out infinite',
-        }}
-      />
-      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full opacity-15 blur-3xl"
-        style={{
-          background: 'radial-gradient(circle, #8B5CF6 0%, transparent 70%)',
-          animation: 'floatMedium 12s ease-in-out infinite',
-          animationDelay: '-5s',
-        }}
-      />
-      <div className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full opacity-10 blur-3xl"
-        style={{
-          background: 'radial-gradient(circle, #06B6D4 0%, transparent 70%)',
-          animation: 'floatSlow 18s ease-in-out infinite',
-          animationDelay: '-8s',
-        }}
-      />
+      {/* Glow orbs — using CSS animation classes */}
+      <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] rounded-full opacity-[0.12] blur-[120px] bg-indigo-600 animate-float-a pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/5 w-[500px] h-[500px] rounded-full opacity-[0.08] blur-[100px] bg-violet-600 animate-float-b pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.05] blur-[80px] bg-cyan-500 pointer-events-none" />
 
-      <div className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
-
+      {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/5 text-blue-400 text-sm font-medium mb-8"
+          className="flex justify-center mb-8"
         >
-          <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-          Enterprise AI Advisory · Global Director, Kyndryl
+          <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border border-indigo-500/30 bg-indigo-500/[0.08] text-indigo-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+            Global Director · Kyndryl · Enterprise AI
+          </span>
         </motion.div>
 
+        {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none mb-6"
+          className="text-6xl sm:text-7xl md:text-8xl lg:text-[96px] font-black tracking-[-0.04em] leading-[0.92] mb-8"
         >
-          Enterprise AI
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400">
-            Expertise.
-          </span>
-          <span className="block text-white/90">Builder Credibility.</span>
+          <span className="text-white">Two speeds.</span>
+          <br />
+          <span className="text-gradient-warm">One advisor.</span>
         </motion.h1>
 
+        {/* Sub */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-10"
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-12 font-light"
         >
-          I&apos;ve spent the last several years building at two speeds simultaneously. By day, a senior enterprise technology leader at Kyndryl managing Microsoft infrastructure for the world&apos;s largest organizations. By night, a founder shipping AI products most of Silicon Valley ignores.
+          By day, a senior enterprise technology leader at Kyndryl — managing Microsoft infrastructure at scale across the world&apos;s largest organizations. By night, a founder shipping AI that most of Silicon Valley ignores.
         </motion.p>
 
+        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
             href="#contact"
-            className="group px-8 py-4 rounded-full font-semibold text-white relative overflow-hidden transition-all duration-300 hover:scale-105"
-            style={{ background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)' }}
+            className="group relative px-8 py-3.5 rounded-full font-bold text-white text-sm overflow-hidden transition-all duration-300 hover:scale-[1.03]"
+            style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
           >
             <span className="relative z-10">Work With Me</span>
-            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
           <a
             href="#services"
-            className="px-8 py-4 rounded-full font-semibold text-slate-300 border border-white/10 hover:border-white/30 hover:text-white transition-all duration-300"
+            className="px-8 py-3.5 rounded-full font-semibold text-sm text-gray-300 border border-white/10 hover:border-white/25 hover:text-white hover:bg-white/[0.04] transition-all duration-300"
           >
             See Services
           </a>
         </motion.div>
 
+        {/* Scroll cue */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600"
+          transition={{ duration: 1, delay: 1.0 }}
+          className="mt-20 flex flex-col items-center"
         >
-          <span className="text-xs uppercase tracking-widest">Scroll</span>
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-px h-8 bg-gradient-to-b from-slate-600 to-transparent"
-          />
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="w-5 h-8 rounded-full border border-gray-700 flex items-start justify-center pt-1.5"
+          >
+            <div className="w-1 h-2 rounded-full bg-gray-500" />
+          </motion.div>
         </motion.div>
       </div>
     </section>

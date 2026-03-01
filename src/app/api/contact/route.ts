@@ -8,33 +8,23 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
   }
 
-  const resendKey = process.env.RESEND_API_KEY
+  const key = process.env.RESEND_API_KEY
 
-  if (resendKey) {
+  if (key) {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${resendKey}`,
-        'Content-Type': 'application/json',
-      },
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: 'JCK LTD Website <onboarding@resend.dev>',
+        from: 'JCK LTD <onboarding@resend.dev>',
         to: 'jckoniecki@gmail.com',
-        subject: `New inquiry from ${name}${company ? ` at ${company}` : ''}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Company:</strong> ${company || 'N/A'}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong></p>
-          <p>${message.replace(/\n/g, '<br>')}</p>
-        `,
+        subject: `New inquiry — ${name}${company ? ` · ${company}` : ''}`,
+        html: `<h2>New Contact</h2><p><b>Name:</b> ${name}</p><p><b>Company:</b> ${company || 'N/A'}</p><p><b>Email:</b> ${email}</p><p><b>Message:</b><br>${message.replace(/\n/g, '<br>')}</p>`,
         reply_to: email,
       }),
     })
-    if (!res.ok) return NextResponse.json({ error: 'Failed to send' }, { status: 500 })
+    if (!res.ok) return NextResponse.json({ error: 'Send failed' }, { status: 500 })
   } else {
-    console.log('Contact form (no RESEND_API_KEY):', { name, company, email, message })
+    console.log('[Contact Form]', { name, company, email, message })
   }
 
   return NextResponse.json({ success: true })

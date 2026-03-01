@@ -3,80 +3,79 @@ import { motion } from 'framer-motion'
 
 const services = [
   {
-    icon: '⚡',
+    number: '01',
     title: 'Microsoft AI Enablement',
-    positioning: 'Copilot. Azure AI. M365. Intune.',
-    description: 'Deep deployment expertise across the full Microsoft AI stack. Not presentations — production implementations. Built on Kyndryl-scale delivery across Fortune 500 environments.',
-    tags: ['Copilot', 'Azure AI', 'M365', 'Intune'],
+    sub: 'Copilot · Azure AI · Intune · M365',
+    body: 'Deep deployment expertise across the full Microsoft AI stack. Built on Kyndryl-scale delivery across Fortune 500 environments. Not presentations — production implementations that stick.',
+    wide: true,
   },
   {
-    icon: '🗺️',
-    title: 'Digital Workplace AI Strategy',
-    positioning: 'How AI actually changes how people work.',
-    description: "Enterprise AI strategy grounded in global deployment reality — not vendor promises. Built from leading Kyndryl's Digital Workplace practice across the world's most demanding organizations.",
-    tags: ['Roadmap', 'Adoption', 'Change Management'],
+    number: '02',
+    title: 'Digital Workplace Strategy',
+    sub: 'Roadmap · Adoption · Change',
+    body: 'AI strategy grounded in global deployment reality. How generative AI actually changes how people work — not what vendors promise at the booth.',
+    wide: false,
   },
   {
-    icon: '🛡️',
-    title: 'AI Governance & Security',
-    positioning: 'CISO-ready. Compliance-first.',
-    description: 'Risk analysis, regulatory frameworks, and security protocols built for regulated industries. The hard-learned governance lessons from enterprise-scale AI rollouts — before they become your problem.',
-    tags: ['Risk', 'Compliance', 'HIPAA', 'SOC2'],
+    number: '03',
+    title: 'AI Governance & Risk',
+    sub: 'Compliance · Security · Frameworks',
+    body: 'CISO-ready governance frameworks for regulated industries. Risk analysis built from the hard-learned lessons of enterprise-scale rollouts.',
+    wide: false,
   },
   {
-    icon: '🔨',
+    number: '04',
     title: 'Founder Advisory',
-    positioning: 'For builders integrating AI into product.',
-    description: "I've shipped production AI — healthcare platforms, consumer apps, enterprise tools. For startups and scale-ups who need someone who understands both the technology and the enterprise buyer.",
-    tags: ['Product AI', 'Enterprise Sales', 'Architecture'],
+    sub: 'Product AI · Enterprise GTM · Architecture',
+    body: 'For startups integrating AI into product and selling into enterprise. I\'ve shipped production AI in healthcare, consumer, and enterprise — I know what both sides of that table look like.',
+    wide: true,
   },
 ]
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-32">
+    <section id="services" className="py-28 md:py-36">
       <div className="max-w-6xl mx-auto px-6">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
         >
-          <span className="text-xs uppercase tracking-widest text-blue-400 font-medium">Services</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-4">
-            What JCK LTD delivers
-          </h2>
-          <p className="text-slate-400 text-lg max-w-2xl">
-            Advisory services built from doing, not theorizing. Every service reflects work I&apos;ve shipped at scale.
+          <div>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-indigo-400 mb-3">Services</p>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
+              What JCK LTD
+              <br />
+              <span className="text-gradient">delivers.</span>
+            </h2>
+          </div>
+          <p className="text-gray-500 max-w-sm leading-relaxed">
+            Advisory grounded in doing, not theorizing. Every service reflects work shipped at scale.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {services.map((service, i) => (
+        {/* Bento grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {services.map((s, i) => (
             <motion.div
-              key={service.title}
+              key={s.number}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="group relative p-8 rounded-2xl border border-white/5 bg-[#0A1628]/80 hover:border-blue-500/30 hover:bg-[#0F2040]/50 transition-all duration-300 cursor-default"
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className={`gradient-border beam-container group p-8 cursor-default transition-all duration-300 ${
+                s.wide ? 'md:col-span-2' : 'md:col-span-1'
+              }`}
+              style={{ '--beam-delay': `${i * 0.8}s` } as React.CSSProperties}
             >
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: 'radial-gradient(ellipse at top left, rgba(59,130,246,0.05), transparent 60%)' }}
-              />
               <div className="relative z-10">
-                <span className="text-3xl mb-4 block">{service.icon}</span>
-                <h3 className="text-xl font-bold text-white mb-1">{service.title}</h3>
-                <p className="text-blue-400 text-sm font-medium mb-3">{service.positioning}</p>
-                <p className="text-slate-400 leading-relaxed mb-5">{service.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {service.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-slate-400 border border-white/5">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <span className="text-xs font-mono text-indigo-500/60 mb-5 block tracking-widest">{s.number}</span>
+                <h3 className="text-xl font-bold text-white mb-1.5">{s.title}</h3>
+                <p className="text-xs text-indigo-400/70 font-medium mb-4 tracking-wide">{s.sub}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{s.body}</p>
               </div>
             </motion.div>
           ))}

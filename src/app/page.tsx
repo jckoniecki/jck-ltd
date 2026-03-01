@@ -1,6 +1,6 @@
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
-import Credibility from '@/components/Credibility'
+import Marquee from '@/components/Marquee'
 import Services from '@/components/Services'
 import About from '@/components/About'
 import Differentiators from '@/components/Differentiators'
@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Navigation />
       <Hero />
-      <Credibility />
+      <Marquee />
       <Services />
       <About />
       <Differentiators />
