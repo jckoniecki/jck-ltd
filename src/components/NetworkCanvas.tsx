@@ -2,15 +2,8 @@
 import { useEffect, useRef } from 'react'
 
 interface Node {
-  x: number
-  y: number
-  vx: number
-  vy: number
-  r: number
-  pulse: number
-  pulseSpeed: number
-  brightness: number
-  isHub: boolean
+  x: number; y: number; vx: number; vy: number
+  r: number; pulse: number; pulseSpeed: number; isHub: boolean
 }
 
 export default function NetworkCanvas() {
@@ -21,165 +14,86 @@ export default function NetworkCanvas() {
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-
-    let animId: number
+    let id: number
     let nodes: Node[] = []
 
     const resize = () => {
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
-      init()
+      const dpr = window.devicePixelRatio || 1
+      canvas.width = canvas.offsetWidth * dpr
+      canvas.height = canvas.offsetHeight * dpr
+      ctx.scale(dpr, dpr)
+      build()
     }
 
-    const init = () => {
-      const w = canvas.offsetWidth
-      const h = canvas.offsetHeight
-      const count = Math.min(28, Math.floor((w * h) / 18000))
+    const build = () => {
+      const w = canvas.offsetWidth, h = canvas.offsetHeight
+      const count = Math.min(24, Math.floor((w * h) / 16000))
       nodes = []
-
-      // Place hub nodes at meaningful positions
-      const hubs = [
-        { x: w * 0.5, y: h * 0.35 },
-        { x: w * 0.25, y: h * 0.6 },
-        { x: w * 0.75, y: h * 0.55 },
-      ]
-
-      hubs.forEach(({ x, y }) => {
-        nodes.push({
-          x, y,
-          vx: (Math.random() - 0.5) * 0.2,
-          vy: (Math.random() - 0.5) * 0.2,
-          r: 5,
-          pulse: Math.random() * Math.PI * 2,
-          pulseSpeed: 0.008 + Math.random() * 0.006,
-          brightness: 1,
-          isHub: true,
-        })
+      // Hub nodes at strategic positions
+      ;[{ x: w*.5, y: h*.35 }, { x: w*.22, y: h*.62 }, { x: w*.78, y: h*.58 }].forEach(p => {
+        nodes.push({ ...p, vx: (Math.random()-.5)*.18, vy: (Math.random()-.5)*.18, r: 4.5, pulse: Math.random()*Math.PI*2, pulseSpeed: .007+Math.random()*.005, isHub: true })
       })
-
-      // Regular nodes scattered around
-      for (let i = 0; i < count - hubs.length; i++) {
-        nodes.push({
-          x: w * 0.1 + Math.random() * w * 0.8,
-          y: h * 0.1 + Math.random() * h * 0.8,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
-          r: 2 + Math.random() * 2,
-          pulse: Math.random() * Math.PI * 2,
-          pulseSpeed: 0.01 + Math.random() * 0.01,
-          brightness: 0.4 + Math.random() * 0.6,
-          isHub: false,
-        })
+      for (let i = 0; i < count - 3; i++) {
+        nodes.push({ x: w*.08+Math.random()*w*.84, y: h*.08+Math.random()*h*.84, vx: (Math.random()-.5)*.22, vy: (Math.random()-.5)*.22, r: 1.8+Math.random()*1.6, pulse: Math.random()*Math.PI*2, pulseSpeed: .009+Math.random()*.009, isHub: false })
       }
     }
 
     const draw = () => {
-      const w = canvas.offsetWidth
-      const h = canvas.offsetHeight
-
+      const w = canvas.offsetWidth, h = canvas.offsetHeight
       ctx.clearRect(0, 0, w, h)
-
-      // Update nodes
       nodes.forEach(n => {
-        n.x += n.vx
-        n.y += n.vy
-        n.pulse += n.pulseSpeed
-
-        // Bounce softly
-        if (n.x < 20 || n.x > w - 20) n.vx *= -1
-        if (n.y < 20 || n.y > h - 20) n.vy *= -1
+        n.x += n.vx; n.y += n.vy; n.pulse += n.pulseSpeed
+        if (n.x < 16 || n.x > w - 16) n.vx *= -1
+        if (n.y < 16 || n.y > h - 16) n.vy *= -1
       })
 
-      const MAX_DIST = 180
-      const MAX_DIST_HUB = 240
-
-      // Draw connections
+      const MAX = 160, MAX_HUB = 220
       for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i]
-          const b = nodes[j]
-          const dx = a.x - b.x
-          const dy = a.y - b.y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          const maxD = (a.isHub || b.isHub) ? MAX_DIST_HUB : MAX_DIST
-
-          if (dist < maxD) {
-            const alpha = (1 - dist / maxD) * 0.35
-            const isHubConn = a.isHub || b.isHub
-
-            // Line gradient: amber
-            const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y)
-            grad.addColorStop(0, `rgba(245, 158, 11, ${alpha * (isHubConn ? 1 : 0.6)})`)
-            grad.addColorStop(0.5, `rgba(251, 191, 36, ${alpha * 0.8})`)
-            grad.addColorStop(1, `rgba(217, 119, 6, ${alpha * (isHubConn ? 1 : 0.6)})`)
-
+        for (let j = i+1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j]
+          const dx = a.x-b.x, dy = a.y-b.y
+          const dist = Math.sqrt(dx*dx+dy*dy)
+          const max = (a.isHub||b.isHub) ? MAX_HUB : MAX
+          if (dist < max) {
+            const alpha = (1-dist/max) * ((a.isHub||b.isHub) ? 0.3 : 0.18)
+            const g = ctx.createLinearGradient(a.x,a.y,b.x,b.y)
+            g.addColorStop(0, `rgba(99,102,241,${alpha})`)
+            g.addColorStop(.5, `rgba(139,92,246,${alpha*.8})`)
+            g.addColorStop(1, `rgba(34,211,238,${alpha*.6})`)
             ctx.beginPath()
-            ctx.strokeStyle = grad
-            ctx.lineWidth = isHubConn ? 1.2 : 0.7
-            ctx.moveTo(a.x, a.y)
-            ctx.lineTo(b.x, b.y)
-            ctx.stroke()
+            ctx.strokeStyle = g
+            ctx.lineWidth = (a.isHub||b.isHub) ? 1 : 0.6
+            ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke()
           }
         }
       }
 
-      // Draw nodes
       nodes.forEach(n => {
-        const pulseFactor = Math.sin(n.pulse) * 0.3 + 0.7 // 0.4–1.0
-        const r = n.r * pulseFactor
-
+        const p = Math.sin(n.pulse)*.28+.72
+        const r = n.r * p
         if (n.isHub) {
-          // Outer glow ring
-          const glowR = r * 3.5
-          const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowR)
-          glow.addColorStop(0, 'rgba(245, 158, 11, 0.18)')
-          glow.addColorStop(1, 'rgba(245, 158, 11, 0)')
-          ctx.beginPath()
-          ctx.fillStyle = glow
-          ctx.arc(n.x, n.y, glowR, 0, Math.PI * 2)
-          ctx.fill()
-
-          // Inner pulse ring
-          ctx.beginPath()
-          ctx.strokeStyle = `rgba(251, 191, 36, ${0.3 * pulseFactor})`
-          ctx.lineWidth = 1
-          ctx.arc(n.x, n.y, r * 2.2, 0, Math.PI * 2)
-          ctx.stroke()
+          const gr = r*4
+          const glow = ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,gr)
+          glow.addColorStop(0,'rgba(99,102,241,0.16)')
+          glow.addColorStop(1,'rgba(99,102,241,0)')
+          ctx.beginPath(); ctx.fillStyle=glow; ctx.arc(n.x,n.y,gr,0,Math.PI*2); ctx.fill()
+          ctx.beginPath(); ctx.strokeStyle=`rgba(139,92,246,${.25*p})`; ctx.lineWidth=.8
+          ctx.arc(n.x,n.y,r*2.4,0,Math.PI*2); ctx.stroke()
         }
-
-        // Core dot
-        const dotGrad = ctx.createRadialGradient(n.x - r * 0.3, n.y - r * 0.3, 0, n.x, n.y, r)
-        dotGrad.addColorStop(0, `rgba(253, 224, 140, ${n.brightness})`)
-        dotGrad.addColorStop(0.6, `rgba(245, 158, 11, ${n.brightness * 0.9})`)
-        dotGrad.addColorStop(1, `rgba(180, 83, 9, ${n.brightness * 0.5})`)
-
-        ctx.beginPath()
-        ctx.fillStyle = dotGrad
-        ctx.arc(n.x, n.y, r, 0, Math.PI * 2)
-        ctx.fill()
+        const dot = ctx.createRadialGradient(n.x-r*.25,n.y-r*.25,0,n.x,n.y,r)
+        dot.addColorStop(0,'rgba(196,181,253,0.95)')
+        dot.addColorStop(.5,'rgba(99,102,241,0.85)')
+        dot.addColorStop(1,'rgba(67,56,202,0.5)')
+        ctx.beginPath(); ctx.fillStyle=dot; ctx.arc(n.x,n.y,r,0,Math.PI*2); ctx.fill()
       })
-
-      animId = requestAnimationFrame(draw)
+      id = requestAnimationFrame(draw)
     }
 
-    resize()
-    draw()
-
+    resize(); draw()
     const ro = new ResizeObserver(resize)
     ro.observe(canvas)
-
-    return () => {
-      cancelAnimationFrame(animId)
-      ro.disconnect()
-    }
+    return () => { cancelAnimationFrame(id); ro.disconnect() }
   }, [])
 
-  return (
-    <canvas
-      ref={ref}
-      className="w-full h-full"
-      style={{ display: 'block' }}
-    />
-  )
+  return <canvas ref={ref} className="w-full h-full block" />
 }

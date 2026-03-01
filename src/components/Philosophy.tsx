@@ -7,110 +7,77 @@ export default function Philosophy() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section ref={ref} className="relative py-28 md:py-36 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0" style={{
-        background: 'linear-gradient(135deg, #0D0A05 0%, #110C06 40%, #0D0A05 100%)',
-        borderTop: '1px solid rgba(245,158,11,0.08)',
-        borderBottom: '1px solid rgba(245,158,11,0.08)',
-      }} />
+    <section ref={ref} className="relative py-24 md:py-32 overflow-hidden"
+      style={{ background: 'linear-gradient(135deg,#050810 0%,#080D1A 50%,#050810 100%)', borderTop: '1px solid rgba(255,255,255,0.04)', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full opacity-[0.06] blur-[90px] pointer-events-none"
+        style={{ background: '#6366F1' }} />
 
-      {/* Warm radial glow — left */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-[0.08] blur-[100px] pointer-events-none"
-        style={{ background: '#F59E0B' }} />
+      {/* Decorative quote mark */}
+      <div className="absolute top-6 left-6 sm:left-12 select-none pointer-events-none opacity-[0.03]"
+        style={{ fontSize: '200px', lineHeight: 1, fontFamily: 'Georgia,serif', color: '#6366F1' }}>&ldquo;</div>
 
-      {/* Giant decorative quote mark */}
-      <div className="absolute top-8 left-8 md:left-16 select-none pointer-events-none opacity-[0.04]"
-        style={{ fontSize: '280px', lineHeight: 1, fontFamily: 'Georgia, serif', color: '#F59E0B' }}>
-        &ldquo;
-      </div>
-
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-20 items-start">
-
-          {/* Vertical amber rule */}
+      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
+        <div className="grid md:grid-cols-[28px_1fr] gap-8 md:gap-16 items-start">
+          {/* Vertical rule */}
           <div className="hidden md:block">
             <motion.div
               initial={{ scaleY: 0, opacity: 0 }}
               animate={inView ? { scaleY: 1, opacity: 1 } : {}}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="origin-top w-px h-40 mt-2"
-              style={{ background: 'linear-gradient(to bottom, #F59E0B, rgba(245,158,11,0.1))' }}
+              transition={{ duration: 0.75 }}
+              className="origin-top w-px h-36 mt-1"
+              style={{ background: 'linear-gradient(to bottom,#6366F1,rgba(99,102,241,0.06))' }}
             />
           </div>
 
-          {/* Content */}
           <div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.15 }}
-              className="section-label mb-6"
-            >
-              Philosophy
-            </motion.p>
+            <motion.span
+              initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.15 }} className="label">Philosophy</motion.span>
 
             <motion.blockquote
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] mb-8"
-              style={{ color: '#F5F1E8' }}
+              transition={{ duration: 0.7, delay: 0.18 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-[1.15] mb-6"
+              style={{ color: '#F1F5F9' }}
             >
-              The enterprise has no shortage
-              <br className="hidden md:block" />
-              {' '}of advisors.{' '}
-              <span className="text-amber-gradient">
-                Most of them have never
-                <br className="hidden md:block" />
-                {' '}shipped anything.
-              </span>
+              The enterprise has no shortage of advisors.{' '}
+              <span className="text-cool">Most of them have never shipped anything.</span>
             </motion.blockquote>
 
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex items-center gap-4 mb-10"
+              initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.38 }}
+              className="flex items-center gap-3 mb-10"
             >
-              <div className="h-px w-10" style={{ background: 'rgba(245,158,11,0.4)' }} />
-              <p className="text-sm font-semibold tracking-wider" style={{ color: '#6B5E50' }}>
-                JIM KONIECKI · JCK LTD
+              <div className="h-px w-8" style={{ background: 'rgba(99,102,241,0.4)' }} />
+              <p className="text-xs font-bold tracking-[0.16em] uppercase" style={{ color: '#334155' }}>
+                Jim Koniecki · JCK LTD
               </p>
             </motion.div>
 
-            {/* Three supporting statements */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="grid sm:grid-cols-3 gap-6"
+              transition={{ duration: 0.55, delay: 0.45 }}
+              className="grid sm:grid-cols-3 gap-5 sm:gap-8"
             >
               {[
-                {
-                  heading: 'Accountability',
-                  body: "I don't sell roadmaps. I help build what's at the end of them.",
-                },
-                {
-                  heading: 'Velocity',
-                  body: 'Enterprise rigor at startup speed. Built from years of operating both simultaneously.',
-                },
-                {
-                  heading: 'Ownership',
-                  body: 'When we\'re done, you own it. No dependency. No retainer to maintain what I built.',
-                },
+                { h: 'Accountability', b: "I don't sell roadmaps. I help build what's at the end of them." },
+                { h: 'Velocity', b: 'Enterprise rigor at startup speed. Built from years operating both simultaneously.' },
+                { h: 'Ownership', b: "When we're done, you own it. No dependency. No retainer to maintain what I built." },
               ].map((item, i) => (
-                <div key={item.heading} className="relative pl-4"
-                  style={{ borderLeft: '1.5px solid rgba(245,158,11,0.2)' }}>
-                  <motion.div
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
-                  >
-                    <p className="text-xs font-bold mb-2 text-amber-gradient tracking-widest uppercase">{item.heading}</p>
-                    <p className="text-sm leading-relaxed" style={{ color: '#6B5E50' }}>{item.body}</p>
-                  </motion.div>
-                </div>
+                <motion.div
+                  key={item.h}
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.55 + i * 0.1 }}
+                  className="pl-4"
+                  style={{ borderLeft: '1.5px solid rgba(99,102,241,0.2)' }}
+                >
+                  <p className="text-xs font-bold mb-1.5 text-cool-static tracking-wider uppercase">{item.h}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: '#475569' }}>{item.b}</p>
+                </motion.div>
               ))}
             </motion.div>
           </div>
