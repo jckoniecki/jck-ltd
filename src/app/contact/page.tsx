@@ -1,72 +1,158 @@
-import type { Metadata } from 'next'
-import ContactForm from '@/components/ContactForm'
-
-export const metadata: Metadata = {
-  title: 'Contact — JCK LTD',
-  description: "Start a conversation with Jim Koniecki. Enterprise AI advisory, Microsoft AI implementation, and Founder Advisory.",
-}
+'use client'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 
 export default function ContactPage() {
+  const [status, setStatus] = useState<'idle'|'sending'|'sent'|'error'>('idle')
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      setStatus(res.ok ? 'sent' : 'error')
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
-    <main className="pt-24 min-h-screen">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-8 pb-24">
-        <div className="grid md:grid-cols-2 gap-14 lg:gap-24 items-start">
+    <main style={{ paddingTop: 68 }}>
+      {/* Header */}
+      <section style={{ background: 'linear-gradient(135deg, #0A1F44, #1A3F7A)', padding: 'clamp(3rem,7vw,5rem) 0' }}>
+        <div className="container">
+          <span className="label" style={{ color: '#9FC2E8' }}>Contact JCK LTD</span>
+          <h1 style={{ color: 'white', fontSize: 'clamp(1.8rem,4vw,2.8rem)', marginBottom: '1rem' }}>
+            Start the Conversation
+          </h1>
+          <p style={{ color: '#9FC2E8', fontSize: '1rem', lineHeight: 1.7, maxWidth: 480, fontWeight: 300 }}>
+            Ready to explore how AI can transform your enterprise? Get in touch with Jim directly.
+          </p>
+        </div>
+      </section>
 
-          {/* Left — context */}
-          <div className="md:sticky md:top-28">
-            <span className="label">Contact</span>
-            <h1 className="text-4xl sm:text-5xl font-black tracking-tight leading-[0.95] mb-5"
-              style={{ color: '#F1F5F9' }}>
-              Ready to<br />
-              <span className="text-cool">move?</span>
-            </h1>
-            <p className="text-base leading-relaxed mb-10" style={{ color: '#64748B' }}>
-              Tell me what you&apos;re working on. I&apos;ll tell you if I can help —
-              and if I can&apos;t, I&apos;ll point you to someone who can.
-            </p>
+      {/* Contact section */}
+      <section className="section section-light">
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px,1fr))', gap: '3rem', alignItems: 'start' }}>
 
-            {/* What to expect */}
-            <div className="space-y-5 mb-10">
-              {[
-                { n: '01', label: 'You reach out', detail: 'Fill out the form or email directly. Brief is fine — I\'ll ask the right questions.' },
-                { n: '02', label: 'I respond within 24h', detail: 'No automated sequences. A real reply from Jim.' },
-                { n: '03', label: 'We talk', detail: 'A focused conversation about your situation. No sales pitch.' },
-              ].map(s => (
-                <div key={s.n} className="flex items-start gap-4">
-                  <span className="text-xs font-mono mt-0.5 flex-shrink-0" style={{ color: 'rgba(99,102,241,0.45)' }}>{s.n}</span>
-                  <div>
-                    <p className="text-sm font-bold mb-0.5" style={{ color: '#CBD5E1' }}>{s.label}</p>
-                    <p className="text-sm" style={{ color: '#475569' }}>{s.detail}</p>
+            {/* Info */}
+            <div>
+              <span className="label">Get In Touch</span>
+              <h2 style={{ fontSize: 'clamp(1.4rem,2.5vw,1.9rem)', marginBottom: '1.25rem' }}>
+                Let&apos;s Build Something Transformative
+              </h2>
+              <p style={{ color: '#444', lineHeight: 1.8, fontSize: '0.95rem', marginBottom: '2rem' }}>
+                Whether you&apos;re looking to accelerate AI adoption, strengthen governance,
+                or secure your AI infrastructure — JCK LTD is ready to partner with you.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                {[
+                  { label: 'Email', value: 'jckoniecki@gmail.com', href: 'mailto:jckoniecki@gmail.com' },
+                  { label: 'LinkedIn', value: 'linkedin.com/in/jimkonieck', href: 'https://www.linkedin.com/in/jimkonieck' },
+                ].map(item => (
+                  <div key={item.label} style={{ display: 'flex', gap: '1rem', alignItems: 'center', padding: '1rem 1.25rem', background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 8 }}>
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#6A8FE3', flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6A8FE3', fontWeight: 700, marginBottom: 2 }}>{item.label}</div>
+                      <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
+                        style={{ fontSize: '0.9rem', color: '#0A1F44', fontWeight: 600 }}>
+                        {item.value}
+                      </a>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {/* Direct contact */}
-            <div className="p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
-              <p className="text-[11px] font-bold tracking-[0.14em] uppercase mb-3" style={{ color: '#334155' }}>Direct</p>
-              <a href="mailto:jckoniecki@gmail.com"
-                className="text-sm font-medium transition-opacity hover:opacity-75"
-                style={{ color: '#6366F1' }}>
-                jckoniecki@gmail.com
-              </a>
-              <div className="mt-3">
-                <a href="https://www.linkedin.com/in/jimkonieck" target="_blank" rel="noopener noreferrer"
-                  className="text-sm font-medium transition-opacity hover:opacity-75 flex items-center gap-1.5"
-                  style={{ color: '#6366F1' }}>
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                  LinkedIn ↗
-                </a>
+              <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#F2F5F9', borderRadius: 10, borderLeft: '3px solid #6A8FE3' }}>
+                <p style={{ fontSize: '0.875rem', color: '#444', lineHeight: 1.7, fontStyle: 'italic' }}>
+                  &ldquo;Every AI transformation begins with a conversation.
+                  Let&apos;s start with yours.&rdquo;
+                </p>
+                <p style={{ fontSize: '0.8rem', color: '#6A8FE3', fontWeight: 700, marginTop: '0.75rem' }}>— Jim Koniecki</p>
               </div>
             </div>
-          </div>
 
-          {/* Right — form */}
-          <ContactForm />
+            {/* Form */}
+            {status === 'sent' ? (
+              <div style={{ background: '#F0F7FF', border: '1px solid #9FC2E8', borderRadius: 12, padding: '3rem', textAlign: 'center' }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>✓</div>
+                <h3 style={{ marginBottom: '0.75rem' }}>Message Received</h3>
+                <p style={{ fontSize: '0.9rem', color: '#555', lineHeight: 1.7 }}>
+                  Thanks for reaching out. Jim will get back to you shortly.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ background: 'white', border: '1px solid #E2E8F0', borderRadius: 12, padding: '2rem' }}>
+                {[
+                  { id: 'name', label: 'Full Name', type: 'text', placeholder: 'Jim Smith', required: true },
+                  { id: 'email', label: 'Work Email', type: 'email', placeholder: 'jim@company.com', required: true },
+                  { id: 'company', label: 'Company', type: 'text', placeholder: 'Acme Corp', required: false },
+                ].map(field => (
+                  <div key={field.id} style={{ marginBottom: '1.25rem' }}>
+                    <label htmlFor={field.id} style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#0A1F44', marginBottom: '0.4rem', letterSpacing: '0.05em' }}>
+                      {field.label}{field.required && ' *'}
+                    </label>
+                    <input
+                      id={field.id}
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      required={field.required}
+                      value={form[field.id as keyof typeof form]}
+                      onChange={e => setForm(f => ({ ...f, [field.id]: e.target.value }))}
+                      style={{
+                        width: '100%', padding: '0.65rem 0.9rem',
+                        border: '1px solid #E2E8F0', borderRadius: 7,
+                        fontSize: '0.9rem', color: '#111', fontFamily: 'var(--font-open-sans)',
+                        outline: 'none', transition: 'border-color 0.2s',
+                        background: '#FAFBFC',
+                      }}
+                      onFocus={e => e.target.style.borderColor = '#6A8FE3'}
+                      onBlur={e => e.target.style.borderColor = '#E2E8F0'}
+                    />
+                  </div>
+                ))}
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label htmlFor="message" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#0A1F44', marginBottom: '0.4rem', letterSpacing: '0.05em' }}>
+                    How Can We Help? *
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    required
+                    placeholder="Tell us about your AI goals and challenges..."
+                    value={form.message}
+                    onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                    style={{
+                      width: '100%', padding: '0.65rem 0.9rem',
+                      border: '1px solid #E2E8F0', borderRadius: 7,
+                      fontSize: '0.9rem', color: '#111', fontFamily: 'var(--font-open-sans)',
+                      outline: 'none', resize: 'vertical', transition: 'border-color 0.2s',
+                      background: '#FAFBFC',
+                    }}
+                    onFocus={e => e.target.style.borderColor = '#6A8FE3'}
+                    onBlur={e => e.target.style.borderColor = '#E2E8F0'}
+                  />
+                </div>
+                {status === 'error' && (
+                  <p style={{ fontSize: '0.85rem', color: '#c0392b', marginBottom: '1rem' }}>
+                    Something went wrong. Email jckoniecki@gmail.com directly.
+                  </p>
+                )}
+                <button type="submit" disabled={status === 'sending'} className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', opacity: status === 'sending' ? 0.7 : 1 }}>
+                  {status === 'sending' ? 'Sending…' : 'Send Message'}
+                </button>
+              </form>
+            )}
+          </div>
         </div>
-      </div>
+      </section>
     </main>
   )
 }

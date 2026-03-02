@@ -3,144 +3,171 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Services — JCK LTD',
-  description: 'Microsoft AI Enablement, Digital Workplace Strategy, AI Governance, and Founder Advisory. Enterprise AI advisory from Jim Koniecki at Kyndryl.',
+  description: 'Microsoft AI Strategy, Governance, Security, and Founder Advisory from Jim Koniecki at JCK LTD.',
 }
 
 const services = [
   {
-    n: '01',
-    icon: 'M3 3h5v5H3zM12 3h5v5h-5zM3 12h5v5H3zM12 12h5v5h-5z',
-    title: 'Microsoft AI Enablement',
-    sub: 'Copilot · Azure AI · Intune · M365',
-    summary: 'Deep deployment expertise across the full Microsoft AI stack.',
+    id: 'strategy',
+    number: '01',
+    title: 'AI Strategy & Advisory',
+    sub: 'Roadmap Development · AI Transformation · Business Alignment',
     body: [
-      "Most organizations have the Microsoft licenses. Few have someone who's actually deployed AI across them at Fortune 500 scale. That's the gap JCK LTD fills.",
-      "From Copilot rollouts that employees actually adopt, to Azure OpenAI integrations that run in production, to Intune policies that enforce AI security at the endpoint — this is hands-on deployment work, not advisory from a safe distance.",
-      "Built on Kyndryl's global delivery practice and years of managing some of the world's most complex Microsoft environments.",
+      'Transform your enterprise with AI strategies tailored to your business reality — not vendor slide decks. JCK LTD develops actionable roadmaps grounded in real deployment experience at Fortune 500 scale.',
+      'Every AI strategy engagement begins with honest assessment of current capabilities, organizational constraints, and competitive context. The output is a plan that can be executed — not a framework to be re-scoped after kickoff.',
     ],
-    bullets: ['Microsoft Copilot strategy and deployment', 'Azure AI and Azure OpenAI integration', 'Microsoft Intune + security governance', 'M365 AI feature adoption programs', 'Copilot Studio custom agents'],
+    includes: ['AI maturity and readiness assessment', 'Roadmap development and prioritization', 'Business case and ROI modeling', 'Microsoft AI technology selection', 'Stakeholder alignment workshops'],
   },
   {
-    n: '02',
-    icon: 'M10 2a8 8 0 100 16A8 8 0 0010 2zM10 6v4l3 3',
-    title: 'Digital Workplace Strategy',
-    sub: 'Roadmap · Adoption · Change Management',
-    summary: 'How AI actually changes how people work.',
+    id: 'governance',
+    number: '02',
+    title: 'AI Governance & Compliance',
+    sub: 'Regulatory Frameworks · Data Privacy · Responsible AI',
     body: [
-      "The gap between 'AI strategy' and employees actually using AI is enormous — and most consultants live on the strategy side. JCK LTD bridges both.",
-      "Leading Kyndryl's Digital Workplace practice means I've seen what drives adoption and what kills it. Most failures aren't technical. They're organizational — wrong sequencing, wrong incentives, wrong change management.",
-      "The result: a workplace where AI makes people measurably more capable, not just theoretically enabled.",
+      'Implement robust governance frameworks and achieve regulatory compliance with specialized guidance built for CISOs, legal teams, and compliance officers in regulated industries.',
+      'From HIPAA to SOC2 to GDPR, AI deployments face increasing regulatory scrutiny. JCK LTD helps enterprises get ahead of frameworks before enforcement — not in reaction to it.',
     ],
-    bullets: ['AI readiness assessment', 'Adoption roadmap and sequencing', 'Change management and communication strategy', 'Employee experience design', 'Leadership alignment and governance'],
+    includes: ['AI governance framework design', 'Regulatory compliance mapping (HIPAA, SOC2, GDPR)', 'Data privacy and residency policies', 'Responsible AI principles and review processes', 'Audit trails and monitoring frameworks'],
   },
   {
-    n: '03',
-    icon: 'M10 2l7 3.5v4.5c0 4-3 7.5-7 8.5C7 17.5 3 14 3 10V5.5L10 2z',
-    title: 'AI Governance & Security',
-    sub: 'Compliance · Risk · Regulatory Frameworks',
-    summary: 'CISO-ready frameworks for regulated industries.',
+    id: 'security',
+    number: '03',
+    title: 'AI Security & Risk Management',
+    sub: 'Risk Analysis · Security Protocols · Threat Mitigation',
     body: [
-      "Regulated industries — healthcare, financial services, government — can't treat AI governance as an afterthought. The frameworks need to be built before problems surface, not in response to them.",
-      "Built from real enterprise deployments where security and compliance weren't optional. Risk analysis, data residency, model governance, audit trails — the full picture.",
-      "Not just frameworks. Implementation. Policies that actually get enforced, not just documented.",
+      'Protect enterprise AI systems with advanced security architecture and risk management built from real enterprise deployments — not theoretical frameworks.',
+      'AI introduces new attack surfaces, data exposure risks, and model integrity challenges. Security must be designed in from the start, not retrofitted when problems surface.',
     ],
-    bullets: ['AI risk assessment and classification', 'Data governance and residency policies', 'Regulatory compliance (HIPAA, SOC2, GDPR)', 'Security architecture for AI systems', 'Audit and monitoring frameworks'],
+    includes: ['AI risk assessment and classification', 'Security architecture for AI systems', 'Endpoint and model protection (Intune + Azure)', 'Threat modeling for AI pipelines', 'Incident response planning'],
   },
   {
-    n: '04',
-    icon: 'M3 17l4-10 4 7 3-5 3 8',
+    id: 'founder',
+    number: '04',
     title: 'Founder Advisory',
-    sub: 'Product AI · Enterprise GTM · Architecture',
-    summary: 'For builders selling AI into enterprise.',
+    sub: 'Product AI · Enterprise GTM · Architecture Review',
     body: [
-      "Enterprise AI advisory for startups requires someone who's sat on both sides of the table — as a builder and as a buyer. Most advisors have only seen one side.",
-      "I've shipped production AI in healthcare (behavioral health platform), consumer (mobile apps), and enterprise tools. I know what enterprise buyers actually evaluate, what procurement looks like, and where AI products fail to land.",
-      "Practical advisory: architecture decisions that enterprise buyers won't reject, GTM sequencing that fits enterprise sales cycles, and honest feedback on where your product is underprepared.",
+      'For startups building AI products and selling into enterprise. The advisor who has sat on both sides of the table — as a builder who has shipped AI in production and as an enterprise buyer who has evaluated and deployed it at Fortune 500 scale.',
+      "Most enterprise AI advisory for startups comes from people who have never shipped code. JCK LTD brings a different perspective: what enterprise buyers actually evaluate, where AI products fail to land, and what it takes to win.",
     ],
-    bullets: ['Enterprise readiness assessment', 'Architecture review for enterprise requirements', 'GTM strategy and sequencing', 'Security and compliance positioning', 'Stakeholder navigation (CISO, CIO, legal)'],
+    includes: ['Enterprise readiness and security posture review', 'GTM strategy for enterprise sales cycles', 'Architecture review for enterprise requirements', 'Pricing and packaging strategy', 'CIO/CISO stakeholder preparation'],
   },
 ]
 
 export default function ServicesPage() {
   return (
-    <main className="pt-24 pb-32">
-      {/* Page header */}
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-8 pb-16">
-        <div className="max-w-2xl">
-          <span className="label">Services</span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[0.95] mb-5"
-            style={{ color: '#F1F5F9' }}>
-            What JCK LTD<br />
-            <span className="text-cool">delivers.</span>
+    <main style={{ paddingTop: 68 }}>
+      {/* Header */}
+      <section style={{ background: 'linear-gradient(135deg, #0A1F44, #1A3F7A)', padding: 'clamp(3rem,7vw,5rem) 0' }}>
+        <div className="container">
+          <span className="label" style={{ color: '#9FC2E8' }}>Enterprise AI Consulting</span>
+          <h1 style={{ color: 'white', fontSize: 'clamp(1.8rem,4vw,2.8rem)', marginBottom: '1rem', maxWidth: 600 }}>
+            Strategic AI Services for Modern Enterprises
           </h1>
-          <p className="text-base leading-relaxed" style={{ color: '#64748B' }}>
-            Advisory grounded in doing, not theorizing. Every service reflects work
-            that has been planned, built, and shipped at enterprise scale.
+          <p style={{ color: '#9FC2E8', fontSize: '1rem', lineHeight: 1.7, maxWidth: 520, fontWeight: 300 }}>
+            JCK LTD delivers Microsoft AI-powered solutions, governance, and security
+            for transformative business outcomes.
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* Divider */}
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        <div className="h-px mb-16" style={{ background: 'linear-gradient(90deg,rgba(99,102,241,0.3),transparent)' }} />
-      </div>
+      {/* Service overview cards */}
+      <section className="section section-light">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span className="label">Our Core Services</span>
+            <h2 style={{ fontSize: 'clamp(1.5rem,3vw,2.1rem)', marginBottom: '0.75rem' }}>
+              Comprehensive AI Advisory
+            </h2>
+            <p style={{ color: '#555', maxWidth: 520, margin: '0 auto', fontSize: '0.95rem', lineHeight: 1.7 }}>
+              A complete suite of services to accelerate AI adoption, ensure compliance,
+              and secure your enterprise transformation.
+            </p>
+          </div>
 
-      {/* Services — full detail */}
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 space-y-16">
-        {services.map((s, i) => (
-          <article key={s.n} className="grid md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr] gap-8 md:gap-16">
-            {/* Left meta */}
-            <div className="flex-shrink-0">
-              <span className="text-[10px] font-mono tracking-[0.2em] block mb-3" style={{ color: 'rgba(99,102,241,0.4)' }}>{s.n}</span>
-              <div className="p-2.5 rounded-xl inline-flex mb-4" style={{ background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.12)' }}>
-                <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5" style={{ color: '#6366F1' }}>
-                  <path d={s.icon} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <h2 className="text-lg font-black tracking-tight mb-1" style={{ color: '#F1F5F9' }}>{s.title}</h2>
-              <p className="text-xs font-semibold tracking-wide mb-5" style={{ color: 'rgba(99,102,241,0.55)' }}>{s.sub}</p>
-              <p className="text-sm leading-relaxed italic" style={{ color: '#475569' }}>{s.summary}</p>
-            </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px,1fr))', gap: '1.5rem', marginBottom: '1rem' }}>
+            {services.map(s => (
+              <a key={s.id} href={`#${s.id}`} className="card" style={{ cursor: 'pointer', display: 'block', textDecoration: 'none' }}>
+                <div style={{ fontSize: '0.7rem', fontFamily: 'var(--font-roboto)', letterSpacing: '0.15em', color: '#9FC2E8', marginBottom: '0.75rem' }}>{s.number}</div>
+                <h3 style={{ fontSize: '1.05rem', marginBottom: '0.75rem' }}>{s.title}</h3>
+                <p style={{ fontSize: '0.875rem', color: '#555', lineHeight: 1.7 }}>{s.body[0].substring(0,140)}…</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Right content */}
-            <div>
-              <div className="space-y-4 mb-8">
-                {s.body.map((para, j) => (
-                  <p key={j} className="text-sm sm:text-[15px] leading-relaxed" style={{ color: '#64748B' }}>{para}</p>
+      {/* Full service detail */}
+      {services.map((s, i) => (
+        <section key={s.id} id={s.id} className={`section ${i % 2 === 0 ? 'section-gray' : 'section-light'}`}>
+          <div className="container">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px,1fr))', gap: '3rem', alignItems: 'start' }}>
+              <div>
+                <div style={{ fontSize: '0.7rem', fontFamily: 'var(--font-roboto)', letterSpacing: '0.15em', color: '#9FC2E8', marginBottom: '0.5rem' }}>{s.number}</div>
+                <span className="label">{s.sub}</span>
+                <h2 style={{ fontSize: 'clamp(1.4rem,2.5vw,2rem)', marginBottom: '1.25rem', color: '#0A1F44' }}>{s.title}</h2>
+                {s.body.map((p, j) => (
+                  <p key={j} style={{ color: '#444', lineHeight: 1.8, fontSize: '0.95rem', marginBottom: '1rem' }}>{p}</p>
                 ))}
+                <Link href="/contact" className="btn btn-primary" style={{ marginTop: '0.75rem' }}>
+                  Discuss This Service
+                </Link>
               </div>
 
-              <div className="p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <p className="text-[11px] font-bold tracking-[0.14em] uppercase mb-3" style={{ color: '#334155' }}>Includes</p>
-                <ul className="space-y-2">
-                  {s.bullets.map(b => (
-                    <li key={b} className="flex items-start gap-2.5 text-sm" style={{ color: '#64748B' }}>
-                      <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ background: '#6366F1' }} />
-                      {b}
+              <div style={{ background: 'white', border: '1px solid #E2E8F0', borderRadius: 10, padding: '2rem' }}>
+                <h4 style={{ fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#6A8FE3', marginBottom: '1.25rem', fontFamily: 'var(--font-roboto)' }}>
+                  What&apos;s Included
+                </h4>
+                <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                  {s.includes.map(item => (
+                    <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', padding: '0.6rem 0', borderBottom: '1px solid #F2F5F9', fontSize: '0.9rem', color: '#444' }}>
+                      <span style={{ color: '#6A8FE3', marginTop: 2, flexShrink: 0 }}>✓</span>
+                      {item}
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-          </article>
-        ))}
-      </div>
+          </div>
+        </section>
+      ))}
+
+      {/* Why Choose */}
+      <section className="section section-light">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <span className="label">Why JCK LTD</span>
+            <h2 style={{ fontSize: 'clamp(1.5rem,3vw,2.1rem)' }}>
+              The Difference That Matters
+            </h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px,1fr))', gap: '1.5rem' }}>
+            {[
+              { title: 'Microsoft AI Expertise', body: 'Certified advisor with Fortune 500-scale deployment experience across Copilot, Azure AI, Intune, and M365.' },
+              { title: 'Strategic Governance', body: 'Deep knowledge of compliance frameworks and responsible AI practices for regulated industries.' },
+              { title: 'Security-First', body: 'Robust protocols for safeguarding enterprise data and AI systems — built in from day one.' },
+            ].map(item => (
+              <div key={item.title} className="card">
+                <h3 style={{ fontSize: '1rem', marginBottom: '0.75rem' }}>{item.title}</h3>
+                <p style={{ fontSize: '0.875rem', color: '#555', lineHeight: 1.7 }}>{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 mt-24">
-        <div className="p-8 sm:p-12 rounded-2xl text-center"
-          style={{ background: 'rgba(99,102,241,0.05)', border: '1px solid rgba(99,102,241,0.14)' }}>
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-3" style={{ color: '#F1F5F9' }}>
-            Ready to get started?
+      <section style={{ background: 'linear-gradient(135deg, #0A1F44, #1A3F7A)', padding: 'clamp(3rem,7vw,5rem) 0', textAlign: 'center' }}>
+        <div className="container">
+          <span className="label" style={{ color: '#9FC2E8' }}>Ready to Transform?</span>
+          <h2 style={{ color: 'white', fontSize: 'clamp(1.5rem,3vw,2.1rem)', margin: '0.75rem 0 1.25rem' }}>
+            Ready to Transform Your Enterprise with AI?
           </h2>
-          <p className="text-sm mb-8" style={{ color: '#475569' }}>
-            Tell me what you&apos;re working on. I&apos;ll tell you if and how I can help.
+          <p style={{ color: '#9FC2E8', maxWidth: 460, margin: '0 auto 2rem', lineHeight: 1.7, fontSize: '0.95rem' }}>
+            Connect with Jim to discuss your AI goals and challenges.
           </p>
-          <Link href="/contact" className="btn-primary inline-flex">
-            Work With Me →
-          </Link>
+          <Link href="/contact" className="btn btn-white">Start the Conversation</Link>
         </div>
-      </div>
+      </section>
     </main>
   )
 }
